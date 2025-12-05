@@ -16,8 +16,7 @@ api_hash = "28cfcf7036020a54feadb2d8b29d94d0"
 SESSION_NAME = 'userbot_session'
 
 # Telegram Client oluştur (userbot olarak)
-client = TelegramClient( api_id, api_hash)
-
+client = TelegramClient(SESSION_NAME, API_ID, API_HASH)
 # Bot komutlarını dinleyecek kullanıcı ID'leri (güvenlik için)
 # Kendi Telegram ID'nizi buraya ekleyin
 ALLOWED_USERS = [8102629232]
