@@ -473,43 +473,16 @@ async def transfer_media_to_group(event):
     except Exception as e:
         await event.respond(f"❌ Transfer hatası: {str(e)}")
 
-
 async def main():
     """Userbot'u başlat"""
     print("=" * 50)
     print("🤖 USERBOT BAŞLATILIYOR")
     print("=" * 50)
-
-    # API bilgilerini kontrol et
-    if not api_id or not api_hash:
-        print(
-            "\n❌ HATA: TELEGRAM_API_ID ve TELEGRAM_API_HASH ortam değişkenleri ayarlanmamış!"
-        )
-        print("Lütfen Secrets bölümünden bu değerleri ekleyin.")
-        return
-
-    # Session dosyası var mı kontrol et
-    session_file = f"{SESSION_NAME}.session"
-    if not os.path.exists(session_file):
-        print("\n❌ Session dosyası bulunamadı!")
-        print("Lütfen önce Shell'de şu komutu çalıştırın:")
-        print("   python auth.py")
-        print("\nTelefon numaranızı ve doğrulama kodunu girdikten sonra")
-        print("bu uygulamayı tekrar başlatın.")
-        return
-
     try:
-        # Bağlantıyı başlat (mevcut session ile)
-        await client.connect()
-
-        # Oturum açık mı kontrol et
-        if not await client.is_user_authorized():
-            print("\n❌ Oturum geçersiz veya süresi dolmuş!")
-            print("Lütfen Shell'de şu komutu çalıştırın:")
-            print("   python auth.py")
-            await client.disconnect()
-            return
-
+        # client.start() her çalıştığında giriş yapmaya çalışır (telefon/şifre ister)
+        # Eğer daha önce session oluşturulduysa onu kullanır, oluşturulmadıysa sorar.
+        # Böylece auth.py'ya gerek kalmaz.
+        await client.start()
         me = await client.get_me()
         print(f"\n✅ Giriş başarılı!")
         print(f"👤 Hesap: {me.first_name} {me.last_name or ''}")
@@ -519,12 +492,9 @@ async def main():
         print("✨ USERBOT HAZIR!")
         print("Kendinize mesaj atarak komutları kullanabilirsiniz.")
         print("=" * 50 + "\n")
-
         await client.run_until_disconnected()
-
     except Exception as e:
-        print(f"\n❌ Bağlantı hatası: {e}")
-        print("Lütfen Shell'de 'python auth.py' komutunu çalıştırın.")
+        print(f"\n❌ Bir hata oluştu: {e}")
 
 
 if __name__ == '__main__':
