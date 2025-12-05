@@ -7,9 +7,9 @@ import asyncio
 import os
 from datetime import datetime
 
-# Yapılandırma - Ortam değişkenlerinden al
-api_id = int(os.environ.get('36435345', '0'))
-api_hash = os.environ.get('28cfcf7036020a54feadb2d8b29d94d0', '')
+# Yapılandırma - Direkt olarak tanımlandı
+api_id = 36435345  # Kendi API ID'nizi buraya yazın
+api_hash = '28cfcf7036020a54feadb2d8b29d94d0'  # Kendi API Hash'inizi buraya yazın
 
 # Userbot modu - kendi hesabınızla giriş yapın
 # İlk çalıştırmada telefon numarası ve doğrulama kodu istenecek
