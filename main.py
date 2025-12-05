@@ -9,8 +9,7 @@ from datetime import datetime
 
 # Yapılandırma - Ortam değişkenlerinden al
 API_ID = int(os.environ.get('36435345', '0'))
-API_HASH = os.environ.get('28cfcf7036020a54feadb2d8b29d94d0
-', '')
+API_HASH = os.environ.get('28cfcf7036020a54feadb2d8b29d94d0', '')
 
 # Userbot modu - kendi hesabınızla giriş yapın
 # İlk çalıştırmada telefon numarası ve doğrulama kodu istenecek
