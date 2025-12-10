@@ -1,5 +1,5 @@
 #!/bin/bash
-python bot.py
+python main.py
 ```
 
 ### 2️⃣ Render.com'a Deploy
